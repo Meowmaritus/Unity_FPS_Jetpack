@@ -1,0 +1,8 @@
+C:\Users\Tyler\Documents\GitHub\UnityShooter\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Tyler\Documents\GitHub\UnityShooter\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\Tyler\Documents\GitHub\UnityShooter\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Tyler\Documents\GitHub\UnityShooter\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Tyler\Documents\GitHub\UnityShooter\Temp\bin\Debug\nunit.framework.dll
+C:\Users\Tyler\Documents\GitHub\UnityShooter\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
+C:\Users\Tyler\Documents\GitHub\UnityShooter\obj\Debug\Assembly-CSharp-firstpass.dll
+C:\Users\Tyler\Documents\GitHub\UnityShooter\obj\Debug\Assembly-CSharp-firstpass.pdb

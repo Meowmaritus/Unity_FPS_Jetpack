@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\scripts\fpsPlayerMove.js">
+    <Files>
+      <File FileName="Assets\scripts\fpsPlayerInput.js" Line="21" Column="2" />
+      <File FileName="Assets\scripts\BulletHandler.js" Line="33" Column="5" />
+      <File FileName="Assets\scripts\GameGUI.js" Line="17" Column="2" />
+      <File FileName="Assets\scripts\MovingTarget.js" Line="12" Column="22" />
+      <File FileName="Assets\scripts\fpsPlayerMove.js" Line="10" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
