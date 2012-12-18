@@ -46,8 +46,6 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\JS\CameraMove.js" />
      <Compile Include="Assets\Scripts\JS\ClickHandler.js" />
-     <Compile Include="Assets\Scripts\JS\MovingTarget.js" />
-     <Compile Include="Assets\Scripts\JS\VertexEdit.js" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-LightedOutline.shader" />
