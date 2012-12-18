@@ -23,6 +23,7 @@ ModelImporter:
     7400030: reload //// 1stPerson_AK47_BU
     7400032: reloadEmptyStart //// 1stPerson_AK47_BU
     7400034: reloadEmptyEnd //// 1stPerson_AK47_BU
+    7400036: shootOnce //// 1stPerson_AK47_BU
   serializedVersion: 10
   materials:
     importMaterials: 1
@@ -96,6 +97,11 @@ ModelImporter:
     - name: reload
       firstFrame: 226
       lastFrame: 280
+      wrapMode: 0
+      loop: 0
+    - name: shootOnce
+      firstFrame: 136
+      lastFrame: 150
       wrapMode: 0
       loop: 0
   meshes:

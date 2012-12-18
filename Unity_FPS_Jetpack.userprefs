@@ -1,0 +1,22 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\clickSpawn_Quit.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Weapon.cs" Line="142" Column="15" />
+      <File FileName="Assets\Scripts\GameGUI.cs" Line="68" Column="2" />
+      <File FileName="Assets\Scripts\fpsPlayerMove.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerHandler.cs" Line="307" Column="3" />
+      <File FileName="Assets\Scripts\HealthBar.cs" Line="76" Column="19" />
+      <File FileName="Assets\Scripts\WeaponInventory.cs" Line="4" Column="1" />
+      <File FileName="Assets\Scripts\BulletHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DefaultHealthBarGUIStyle.cs" Line="8" Column="26" />
+      <File FileName="Assets\Scripts\DeathWall.cs" Line="18" Column="66" />
+      <File FileName="Assets\Scripts\TitleScreen.cs" Line="22" Column="27" />
+      <File FileName="Assets\Scripts\clickSpawn_Quit.cs" Line="22" Column="29" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

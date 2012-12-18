@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 //using System.Collections.Generic.List;
 
+[AddComponentMenu("_Main/Weapons/Bullet Handler")]
 public class BulletHandler : MonoBehaviour {
 	
 	public GameObject sparks;
@@ -18,7 +19,10 @@ public class BulletHandler : MonoBehaviour {
 	
 	void Update () {
 		if (Time.time - spawnTime > 10)
-			Destroy(this.gameObject);
+		{
+			Destroy(this.gameObject);			
+			
+		}
 	}
 	
 	void OnCollisionEnter(Collision other) {
@@ -42,7 +46,7 @@ public class BulletHandler : MonoBehaviour {
 		}
 		else if (other.gameObject.tag == "Target")
 			GameGUI.targetCount++;
-		if (other.gameObject.tag != "Bullet" && other.gameObject.tag != "Player") {
+		if (other.gameObject.tag != "Bullet" && other.gameObject.tag != "Player") {			
 			Instantiate(sparks, transform.position, transform.rotation);
 			Destroy(this.gameObject);
 		}
@@ -52,7 +56,7 @@ public class BulletHandler : MonoBehaviour {
 		Mesh mesh = go.GetComponent<MeshFilter>().mesh;
 		Vector3[] vertices = mesh.vertices;
 		GameGUI.DebugValue["vertices"] = vertices;
-		Debug.Log(vertices);
+		//Debug.Log(vertices);
 	}
 
 	/*
