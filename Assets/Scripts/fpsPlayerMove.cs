@@ -105,9 +105,9 @@ public class fpsPlayerMove : MonoBehaviour {
 			else if (Input.GetButton("JetPack")) {
 				Jetpack = true;			
 				Vector3 r = playerCam.transform.rotation.eulerAngles;
-				float y = (90+r.x) % 360;
-				r = new Vector3(0f, (y > 90) ? 90-(y%90) : y, -(90-y)).normalized;
-				rigidbody.AddRelativeForce(r*jetpackForce);
+				float y = (135+r.x) % 360;
+				r = new Vector3(0f, (y > 135) ? 90-(y%90) : y, -(90-y));
+				rigidbody.AddRelativeForce(r.normalized*jetpackForce);
 			}
 			else {
 				Jetpack = false;
