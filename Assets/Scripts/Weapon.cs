@@ -25,13 +25,27 @@ public enum MovementState
 	Sprinting
 }
 
+public enum GunState
+{
+	Safety,
+	Single,
+	Burst,
+	Auto
+}
+
 [AddComponentMenu("_Main/Weapons/Weapon")]
 public class Weapon : MonoBehaviour 
 {
 	public GameObject MuzzleFlashObject;
 	
+	private int CurrentBurst = 0;
+	
 	public PlayerHandler Player;
 	public GameObject WeaponObject;
+	
+	public bool SafetyEngaged = false;
+	
+	public int BurstAmount = 5;
 	
 	public GameObject GunLight;
 	
@@ -49,6 +63,7 @@ public class Weapon : MonoBehaviour
 	public AudioClip[] ShortReloadSounds;
 	public AudioClip[] LongReloadSounds;
 	public AudioClip[] LoadBarrelSounds;
+	public AudioClip[] ModeSwitchSounds;
 	
 	public Texture[] MuzzleFlashes;
 	public Material MuzzleFlashMaterial;
@@ -61,6 +76,7 @@ public class Weapon : MonoBehaviour
 	public MovementState CurrentMovement = MovementState.None;
 	public MovementState oldMovement = MovementState.None;
 	public ShootState CurrentShoot = ShootState.None;
+	public GunState CurrentGunState = GunState.Auto;
 	
 	public bool CanReload = false;
 	
@@ -68,6 +84,18 @@ public class Weapon : MonoBehaviour
 	
 	private float NextFire = 0.0f;
 	private float NextMuzzleFlash = 0.0f;
+	
+	private bool _mfv = false;
+	
+	private bool MuzzleFlareVisible
+	{
+		get { return _mfv; }
+		set 
+		{ 
+			SetFlash(value); 
+			_mfv = value;
+		}
+	}
 		
 	// Use this for initialization
 	void Start () 
@@ -77,23 +105,73 @@ public class Weapon : MonoBehaviour
 	
 	void FixedUpdate()
 	{
+		if (Time.time > NextMuzzleFlash && MuzzleFlareVisible == true)
+		{
+			MuzzleFlareVisible = false;
+		}
+	}
+	
+	private void SetFlash(bool visible)
+	{
+		if (visible == true)
+		{
+			MuzzleFlashObject.renderer.enabled = true;
+			
+			//MuzzleFlashObject.transform.position = Barrel.transform.position;
+			//MuzzleFlashObject.transform.rotation = Barrel.transform.rotation;
+			//MuzzleFlashObject.transform.Rotate(new Vector3(180, 0, 0));	
+		}
+		else
+		{
+			MuzzleFlashObject.renderer.enabled = false;
+			
+			//MuzzleFlashObject.transform.position = Barrel.transform.position;
+			//MuzzleFlashObject.transform.rotation = Barrel.transform.rotation;
+			//MuzzleFlashObject.transform.Rotate(new Vector3(0, 0, 0));	
+		}
+	}
+	
+	public void CycleState()
+	{
+		int r = Random.Range(0, ModeSwitchSounds.Length);
+		Player._AudioSource.PlayOneShot(ModeSwitchSounds[r]);
+		
+		if (CurrentGunState == GunState.Safety)
+		{
+			CurrentGunState = GunState.Single;
+		}
+		else if (CurrentGunState == GunState.Single)
+		{
+			CurrentGunState = GunState.Burst;
+		}
+		else if (CurrentGunState == GunState.Burst)
+		{
+			CurrentGunState = GunState.Auto;
+		}
+		else if (CurrentGunState == GunState.Auto)
+		{
+			CurrentGunState = GunState.Safety;
+		}
+	}
+	
+	public void ToggleSafety()
+	{
+		SafetyEngaged = !SafetyEngaged;
 		
 	}
 	
 	// Update is called once per frame
 	void Update () 
-	{		
-		GunLight.active = MuzzleFlashObject.active;
-				
-		if (Time.time > NextMuzzleFlash && MuzzleFlashObject.active == true)
-		{
-			MuzzleFlashObject.active = false;			
-		}
+	{	
+		GameGUI.DisplayValues["Switch"] = CurrentGunState;
+		GameGUI.DisplayValues["Forced Safety"] = SafetyEngaged;
 		
+		//GameGUI.DebugValue["CurrentWeapon.MuzzleFlareVisible"] = MuzzleFlareVisible;
+		GameGUI.DebugValue["CurrentWeapon.MuzzleFlashObject.renderer.enabled"] = MuzzleFlashObject.renderer.enabled;
+		GameGUI.DebugValue["CurrentWeapon.CurrentGunState"] = CurrentGunState;
+		GameGUI.DebugValue["CurrentWeapon.CurrentBurst"] = CurrentBurst;
 		
-		MuzzleFlashObject.transform.position = Barrel.transform.position;
-		MuzzleFlashObject.transform.rotation = Barrel.transform.rotation;
-		MuzzleFlashObject.transform.Rotate(new Vector3(180, 0, 0));
+		GunLight.SetActive(MuzzleFlareVisible);	
 		
 		GameGUI.DebugValue["AmmoTotal"] = AmmoTotal;
 		GameGUI.DebugValue["AmmoInClip"] = AmmoInClip;
@@ -250,21 +328,26 @@ public class Weapon : MonoBehaviour
 	
 	private void FireRound()
 	{		
-		NextMuzzleFlash = Time.time + MuzzleFlashDelay;
+		if ( (CurrentGunState == GunState.Auto) || (CurrentGunState == GunState.Burst && CurrentBurst <= BurstAmount) || (CurrentGunState == GunState.Single && CurrentBurst <= 1))
+		{
 		
-		int rm = Random.Range (0, MuzzleFlashes.Length);
-		MuzzleFlashMaterial.mainTexture = MuzzleFlashes[rm];
-		MuzzleFlashObject.renderer.material = MuzzleFlashMaterial;
-							
-		int ra = Random.Range(0, GunshotSounds.Length);
-		
-		Player._AudioSource.PlayOneShot(GunshotSounds[ra]);				
-		
-		int rb = Random.Range(0, BulletObjects.Length);
-		
-		Instantiate(BulletObjects[rb], Barrel.position, (Barrel.rotation * BulletObjects[rb].transform.rotation));
-		
-		AmmoInBarrel--;					
+			NextMuzzleFlash = Time.time + MuzzleFlashDelay;
+			
+			int rm = Random.Range (0, MuzzleFlashes.Length);
+			MuzzleFlashMaterial.mainTexture = MuzzleFlashes[rm];
+			MuzzleFlashObject.renderer.material = MuzzleFlashMaterial;
+								
+			int ra = Random.Range(0, GunshotSounds.Length);
+			
+			Player._AudioSource.PlayOneShot(GunshotSounds[ra]);				
+			
+			int rb = Random.Range(0, BulletObjects.Length);
+			
+			Instantiate(BulletObjects[rb], Barrel.position, (Barrel.rotation * BulletObjects[rb].transform.rotation));
+			
+			AmmoInBarrel--;	
+			
+		}
 	}
 	
 	private void EnterFireLoop()
@@ -273,24 +356,36 @@ public class Weapon : MonoBehaviour
 	}
 	
 	public void Fire()
-	{		
-		if (Time.time > NextFire)
+	{						
+		if (SafetyEngaged == false)
 		{
-			if (CurrentReload == ReloadState.None && NeedsToReload == false)
-			{			
-				MuzzleFlashObject.active = true;
-				if (CurrentShoot == ShootState.None)
-				{
-					CurrentShoot = ShootState.LoopStart;				
-					WeaponObject.animation.Play("shootStart");													
-				}
-				else if (CurrentShoot == ShootState.Loop)
-				{		
-					WeaponObject.animation.Play("shootLoop");															
-				}
-				FireRound();	
-				NextFire = Time.time + FireDelay;
-			}	
+			if (Time.time > NextFire)
+			{
+				if (CurrentReload == ReloadState.None && NeedsToReload == false)
+				{			
+					if ( (CurrentGunState == GunState.Auto) || (CurrentGunState == GunState.Burst && CurrentBurst <= BurstAmount) || (CurrentGunState == GunState.Single && CurrentBurst <= 1))
+					{
+						
+						CurrentBurst++;
+						
+						MuzzleFlareVisible = true;
+						
+						if (CurrentShoot == ShootState.None)
+						{
+							CurrentShoot = ShootState.LoopStart;				
+							WeaponObject.animation.Play("shootStart");													
+						}
+						else if (CurrentShoot == ShootState.Loop)
+						{		
+							WeaponObject.animation.Play("shootLoop");															
+						}
+						FireRound();	
+						
+						NextFire = Time.time + FireDelay;
+						
+					}
+				}	
+			}
 		}
 	}
 	
@@ -318,12 +413,16 @@ public class Weapon : MonoBehaviour
 				WeaponObject.animation.Play("shootEnd");
 				
 				CurrentShoot = ShootState.LoopEnd;
+				
+				CurrentBurst = 0;
 			}
 			else
 			{		
 				StartIdling();
 				
 				CurrentShoot = ShootState.None;
+				
+				CurrentBurst = 0;
 			}
 		}
 	}	

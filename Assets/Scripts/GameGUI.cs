@@ -93,7 +93,12 @@ public class GameGUI : MonoBehaviour {
 		
 		BarHealth.Value = Mathf.Lerp(Player.SmoothHealth, oldBarHealthValue, BarHealthLerp);
 		BarStamina.Value = Mathf.Lerp(Player.SmoothStamina, oldBarStaminaValue, BarStaminaLerp);
-		BarJetpackFuel.Value = Mathf.Lerp(Player.SmoothJetpackFuel, oldBarJetpackFuelValue, BarJetpackFuelLerp);				
+		BarJetpackFuel.Value = Mathf.Lerp(Player.SmoothJetpackFuel, oldBarJetpackFuelValue, BarJetpackFuelLerp);
+		
+		if (BarHealth.Value <= 0)
+		{
+			Player.Die();
+		}
 		
 		if (Player.IsUpdatingTempHealth)      { tempBarHealthTempValue = Player.SmoothHealth; }
 		if (Player.IsUpdatingTempStamina)     { tempBarStaminaTempValue = Player.SmoothStamina; }

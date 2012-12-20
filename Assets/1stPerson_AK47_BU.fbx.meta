@@ -1,38 +1,133 @@
 fileFormatVersion: 2
 guid: e0d1d46f48e65bd42a08f8c6c96e9eba
 ModelImporter:
+  serializedVersion: 15
   fileIDToRecycleName:
+    100000: RightHand:Layer2
+    100002: RightHand:Layer1
+    100004: RightHand:Layer1_mesh
+    100006: ThumbG
+    100008: Index_(1)_1
+    100010: Hand
+    100012: LeftHand
+    100014: Arm
+    100016: Bicep
+    100018: LeftHand_mesh
+    100020: //RootNode
+    100022: Index_(3)_1
+    100024: Arm_1
+    100026: Bicept
+    100028: Shoulder
+    100030: Index_(3)
+    100032: Index_(2)
+    100034: wristIK
+    100036: Ring_(2)
+    100038: Bolt
+    100040: RighthandNUL
+    100042: Camera
+    100044: Hand_(1)
+    100046: Gunbarrel
+    100048: Thumb_(3)
+    100050: Thumb_(2)
+    100052: Ring_(1)
+    100054: Pinky_(3)
+    100056: Thumb_(1)
+    100058: Pinky_(1)
+    100060: Lefthand
+    100062: HandIK
+    100064: Pinky_(2)
+    100066: Ring_(3)
+    100068: Index_(2)_1
+    100070: HandIK_1
+    100072: WristIK
+    100074: Index_(1)
+    100076: Light
+    100078: Hand_(2)
+    100080: Trigger
+    100082: Middle_(2)
+    100084: Middle_(1)
+    100086: Shoulder_1
+    100088: Middle_(3)
+    400000: RightHand:Layer2
+    400002: RightHand:Layer1
+    400004: RightHand:Layer1_mesh
+    400006: ThumbG
+    400008: Index_(1)_1
+    400010: Hand
+    400012: LeftHand
+    400014: Arm
+    400016: Bicep
+    400018: LeftHand_mesh
+    400020: //RootNode
+    400022: Index_(3)_1
+    400024: Arm_1
+    400026: Bicept
+    400028: Shoulder
+    400030: Index_(3)
+    400032: Index_(2)
+    400034: wristIK
+    400036: Ring_(2)
+    400038: Bolt
+    400040: RighthandNUL
+    400042: Camera
+    400044: Hand_(1)
+    400046: Gunbarrel
+    400048: Thumb_(3)
+    400050: Thumb_(2)
+    400052: Ring_(1)
+    400054: Pinky_(3)
+    400056: Thumb_(1)
+    400058: Pinky_(1)
+    400060: Lefthand
+    400062: HandIK
+    400064: Pinky_(2)
+    400066: Ring_(3)
+    400068: Index_(2)_1
+    400070: HandIK_1
+    400072: WristIK
+    400074: Index_(1)
+    400076: Light
+    400078: Hand_(2)
+    400080: Trigger
+    400082: Middle_(2)
+    400084: Middle_(1)
+    400086: Shoulder_1
+    400088: Middle_(3)
+    2300000: RightHand:Layer2
+    3300000: RightHand:Layer2
     4300000: LeftHand_mesh
     4300002: RightHand:Layer1_mesh
     4300004: RightHand:Layer2
-    7400000: Base Stack //// 1stPerson_AK47_BU
-    7400002: idle //// 1stPerson_AK47_BU
-    7400004: walkStart //// 1stPerson_AK47_BU
-    7400006: idle1 //// 1stPerson_AK47_BU
-    7400008: idle2 //// 1stPerson_AK47_BU
-    7400010: idle3 //// 1stPerson_AK47_BU
-    7400012: idle4 //// 1stPerson_AK47_BU
-    7400014: idle5 //// 1stPerson_AK47_BU
-    7400016: walkLoop //// 1stPerson_AK47_BU
-    7400018: shootStart //// 1stPerson_AK47_BU
-    7400020: shootLoop //// 1stPerson_AK47_BU
-    7400022: shootEnd //// 1stPerson_AK47_BU
-    7400024: sprintStart //// 1stPerson_AK47_BU
-    7400026: sprintLoop //// 1stPerson_AK47_BU
-    7400028: sprintEnd //// 1stPerson_AK47_BU
-    7400030: reload //// 1stPerson_AK47_BU
-    7400032: reloadEmptyStart //// 1stPerson_AK47_BU
-    7400034: reloadEmptyEnd //// 1stPerson_AK47_BU
-    7400036: shootOnce //// 1stPerson_AK47_BU
-  serializedVersion: 10
+    6400000: RightHand:Layer2
+    7400000: Base Stack
+    7400002: idle
+    7400004: walkStart
+    7400006: idle1
+    7400008: idle2
+    7400010: idle3
+    7400012: idle4
+    7400014: idle5
+    7400016: walkLoop
+    7400018: shootStart
+    7400020: shootLoop
+    7400022: shootEnd
+    7400024: sprintStart
+    7400026: sprintLoop
+    7400028: sprintEnd
+    7400030: reload
+    7400032: reloadEmptyStart
+    7400034: reloadEmptyEnd
+    7400036: shootOnce
+    11100000: //RootNode
+    13700000: RightHand:Layer1_mesh
+    13700002: LeftHand_mesh
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
-    generateAnimations: 3
+    legacyGenerateAnimations: 4
     bakeSimulation: 0
-    splitAnimations: 1
     animationCompression: 0
     animationRotationError: .5
     animationPositionError: .5
@@ -40,79 +135,301 @@ ModelImporter:
     animationWrapMode: 0
     clipAnimations:
     - name: idle
+      takeName: 
       firstFrame: 0
       lastFrame: 54
       wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: walkStart
+      takeName: 
       firstFrame: 55
       lastFrame: 81
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: walkLoop
+      takeName: 
       firstFrame: 82
       lastFrame: 135
       wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: shootStart
+      takeName: 
       firstFrame: 136
       lastFrame: 141
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: shootLoop
+      takeName: 
       firstFrame: 142
       lastFrame: 146
       wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: shootEnd
+      takeName: 
       firstFrame: 147
       lastFrame: 150
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: sprintStart
+      takeName: 
       firstFrame: 151
       lastFrame: 169
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: sprintLoop
+      takeName: 
       firstFrame: 170
       lastFrame: 213
       wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: sprintEnd
+      takeName: 
       firstFrame: 214
       lastFrame: 225
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: reloadEmptyStart
+      takeName: 
       firstFrame: 225
       lastFrame: 274
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: reloadEmptyEnd
+      takeName: 
       firstFrame: 291
       lastFrame: 327
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: reload
+      takeName: 
       firstFrame: 226
       lastFrame: 280
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
     - name: shootOnce
+      takeName: 
       firstFrame: 136
       lastFrame: 150
       wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
       loop: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      keepAdditionalBonesAnimation: 1
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      skeletonMaskElements: []
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMesh: 0
+    optimizeMeshForGPU: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -120,336 +437,23 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
-    normalImportMode: 0
+    normalImportMode: 1
     tangentImportMode: 1
-  textMetaNamesToFileIDs:
-    //RootNode:
-      data:
-        first: 1
-        second: b4860100
-      data:
-        first: 4
-        second: 941a0600
-      data:
-        first: 111
-        second: 605fa900
-    Arm:
-      data:
-        first: 1
-        second: ae860100
-      data:
-        first: 4
-        second: 8e1a0600
-    Arm_1:
-      data:
-        first: 1
-        second: b8860100
-      data:
-        first: 4
-        second: 981a0600
-    Bicep:
-      data:
-        first: 1
-        second: b0860100
-      data:
-        first: 4
-        second: 901a0600
-    Bicept:
-      data:
-        first: 1
-        second: ba860100
-      data:
-        first: 4
-        second: 9a1a0600
-    Bolt:
-      data:
-        first: 1
-        second: c6860100
-      data:
-        first: 4
-        second: a61a0600
-    Camera:
-      data:
-        first: 1
-        second: ca860100
-      data:
-        first: 4
-        second: aa1a0600
-    Gunbarrel:
-      data:
-        first: 1
-        second: ce860100
-      data:
-        first: 4
-        second: ae1a0600
-    Hand:
-      data:
-        first: 1
-        second: aa860100
-      data:
-        first: 4
-        second: 8a1a0600
-    HandIK:
-      data:
-        first: 1
-        second: de860100
-      data:
-        first: 4
-        second: be1a0600
-    HandIK_1:
-      data:
-        first: 1
-        second: e6860100
-      data:
-        first: 4
-        second: c61a0600
-    Hand_(1):
-      data:
-        first: 1
-        second: cc860100
-      data:
-        first: 4
-        second: ac1a0600
-    Hand_(2):
-      data:
-        first: 1
-        second: ee860100
-      data:
-        first: 4
-        second: ce1a0600
-    Index_(1):
-      data:
-        first: 1
-        second: ea860100
-      data:
-        first: 4
-        second: ca1a0600
-    Index_(1)_1:
-      data:
-        first: 1
-        second: a8860100
-      data:
-        first: 4
-        second: 881a0600
-    Index_(2):
-      data:
-        first: 1
-        second: c0860100
-      data:
-        first: 4
-        second: a01a0600
-    Index_(2)_1:
-      data:
-        first: 1
-        second: e4860100
-      data:
-        first: 4
-        second: c41a0600
-    Index_(3):
-      data:
-        first: 1
-        second: be860100
-      data:
-        first: 4
-        second: 9e1a0600
-    Index_(3)_1:
-      data:
-        first: 1
-        second: b6860100
-      data:
-        first: 4
-        second: 961a0600
-    LeftHand:
-      data:
-        first: 1
-        second: ac860100
-      data:
-        first: 4
-        second: 8c1a0600
-    LeftHand_mesh:
-      data:
-        first: 1
-        second: b2860100
-      data:
-        first: 4
-        second: 921a0600
-      data:
-        first: 137
-        second: a20bd100
-    Lefthand:
-      data:
-        first: 1
-        second: dc860100
-      data:
-        first: 4
-        second: bc1a0600
-    Light:
-      data:
-        first: 1
-        second: ec860100
-      data:
-        first: 4
-        second: cc1a0600
-    Middle_(1):
-      data:
-        first: 1
-        second: f4860100
-      data:
-        first: 4
-        second: d41a0600
-    Middle_(2):
-      data:
-        first: 1
-        second: f2860100
-      data:
-        first: 4
-        second: d21a0600
-    Middle_(3):
-      data:
-        first: 1
-        second: f8860100
-      data:
-        first: 4
-        second: d81a0600
-    Pinky_(1):
-      data:
-        first: 1
-        second: da860100
-      data:
-        first: 4
-        second: ba1a0600
-    Pinky_(2):
-      data:
-        first: 1
-        second: e0860100
-      data:
-        first: 4
-        second: c01a0600
-    Pinky_(3):
-      data:
-        first: 1
-        second: d6860100
-      data:
-        first: 4
-        second: b61a0600
-    RightHand:Layer1:
-      data:
-        first: 1
-        second: a2860100
-      data:
-        first: 4
-        second: 821a0600
-    RightHand:Layer1_mesh:
-      data:
-        first: 1
-        second: a4860100
-      data:
-        first: 4
-        second: 841a0600
-      data:
-        first: 137
-        second: a00bd100
-    RightHand:Layer2:
-      data:
-        first: 1
-        second: a0860100
-      data:
-        first: 4
-        second: 801a0600
-      data:
-        first: 23
-        second: 60182300
-      data:
-        first: 33
-        second: a05a3200
-    RighthandNUL:
-      data:
-        first: 1
-        second: c8860100
-      data:
-        first: 4
-        second: a81a0600
-    Ring_(1):
-      data:
-        first: 1
-        second: d4860100
-      data:
-        first: 4
-        second: b41a0600
-    Ring_(2):
-      data:
-        first: 1
-        second: c4860100
-      data:
-        first: 4
-        second: a41a0600
-    Ring_(3):
-      data:
-        first: 1
-        second: e2860100
-      data:
-        first: 4
-        second: c21a0600
-    Shoulder:
-      data:
-        first: 1
-        second: bc860100
-      data:
-        first: 4
-        second: 9c1a0600
-    Shoulder_1:
-      data:
-        first: 1
-        second: f6860100
-      data:
-        first: 4
-        second: d61a0600
-    ThumbG:
-      data:
-        first: 1
-        second: a6860100
-      data:
-        first: 4
-        second: 861a0600
-    Thumb_(1):
-      data:
-        first: 1
-        second: d8860100
-      data:
-        first: 4
-        second: b81a0600
-    Thumb_(2):
-      data:
-        first: 1
-        second: d2860100
-      data:
-        first: 4
-        second: b21a0600
-    Thumb_(3):
-      data:
-        first: 1
-        second: d0860100
-      data:
-        first: 4
-        second: b01a0600
-    Trigger:
-      data:
-        first: 1
-        second: f0860100
-      data:
-        first: 4
-        second: d01a0600
-    WristIK:
-      data:
-        first: 1
-        second: e8860100
-      data:
-        first: 4
-        second: c81a0600
-    wristIK:
-      data:
-        first: 1
-        second: c2860100
-      data:
-        first: 4
-        second: a21a0600
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 1
+  userData: 

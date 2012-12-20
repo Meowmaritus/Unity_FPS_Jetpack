@@ -134,6 +134,16 @@ public class PlayerHandler : MonoBehaviour {
 		////}
 		
 		
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			CurrentWeapon.CycleState();	
+		}
+		
+		if (Input.GetKeyDown(KeyCode.LeftAlt))
+		{
+			CurrentWeapon.ToggleSafety();	
+		}
+		
 		if (CurrentWeapon.CurrentMovement == MovementState.Walking)
 		{
 			if(Time.time > nextFootstep)
@@ -187,13 +197,7 @@ public class PlayerHandler : MonoBehaviour {
 		if	(PlayerMover.Jetpack == false || PlayerMover.CanUseJetpack == false)
 		{
 			GainJetpackFuel(JetpackFuelRegen);	
-		}
-		
-		
-		if (Health <= 0)
-		{
-			Die();
-		}
+		}						
 		
 		if (PlayerMover.onGround)
 		{
