@@ -14,7 +14,7 @@ public class BulletHandler : MonoBehaviour {
 		rigidbody.AddRelativeForce(Vector3.forward*speed*100);
 		spawnTime = Time.time;
 		transform.Rotate(90,0,0);
-		Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").collider, collider);
+		Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("IgnoreBullet").collider, collider);
 	}
 	
 	void Update () {

@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
 	
 	public GameObject[] BulletObjects;
 	
-	public Transform Barrel;	
+	public GameObject TipOfBarrel;	
 	
 	public ReloadState CurrentReload = ReloadState.None;
 	public MovementState CurrentMovement = MovementState.None;
@@ -100,7 +100,16 @@ public class Weapon : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		if (TipOfBarrel.renderer != null)
+		{
+			TipOfBarrel.renderer.enabled = false;	
+		}
 		
+		if(MuzzleFlashObject.renderer != null)
+		{
+			MuzzleFlashObject.renderer.enabled = false;	
+		}
+				
 	}
 	
 	void FixedUpdate()
@@ -343,7 +352,7 @@ public class Weapon : MonoBehaviour
 			
 			int rb = Random.Range(0, BulletObjects.Length);
 			
-			Instantiate(BulletObjects[rb], Barrel.position, (Barrel.rotation * BulletObjects[rb].transform.rotation));
+			Instantiate(BulletObjects[rb], TipOfBarrel.transform.position, (TipOfBarrel.transform.rotation * BulletObjects[rb].transform.rotation));
 			
 			AmmoInBarrel--;	
 			
