@@ -1,16 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BulletHandler.cs">
-    <Files>
-      <File FileName="Assets\Scripts\Weapon.cs" Line="44" Column="33" />
-      <File FileName="Assets\Scripts\PlayerHandler.cs" Line="288" Column="28" />
-      <File FileName="Assets\Scripts\TitleScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MuzzleFlashSpriteObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameGUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GunAnimationContainer.cs" Line="5" Column="2" />
-      <File FileName="Assets\Scripts\BulletHandler.cs" Line="17" Column="73" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

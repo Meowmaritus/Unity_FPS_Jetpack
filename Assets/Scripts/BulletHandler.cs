@@ -7,6 +7,7 @@ public class BulletHandler : MonoBehaviour {
 	
 	public GameObject sparks;
 	public float speed;
+	public float bulletLife = 10;
 	private float spawnTime;
 	
 	
@@ -18,7 +19,7 @@ public class BulletHandler : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Time.time - spawnTime > 10)
+		if (Time.time - spawnTime > bulletLife)
 		{
 			Destroy(this.gameObject);			
 			
@@ -26,21 +27,15 @@ public class BulletHandler : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision other) {
-		Debug.Log(other.gameObject.name);
-		if (other.gameObject.tag == "Wall") {
-			GameGUI.wallCount++;
-			//addVertex(other.gameObject);
-		}
-		else if (other.gameObject.tag == "Target")
-			GameGUI.targetCount++;
-		if (other.gameObject.tag != "Bullet") {
-			Instantiate(sparks, transform.position, transform.rotation);
-			Destroy(this.gameObject);
-		}
+		HandleCollision(other);
 	}
 	
 	
 	void OnCollisionStay(Collision other) {
+		HandleCollision(other);
+	}
+	
+	void HandleCollision(Collision other) {
 		Debug.Log(other.gameObject.name);
 		if (other.gameObject.tag == "Wall") {
 			GameGUI.wallCount++;
@@ -48,7 +43,7 @@ public class BulletHandler : MonoBehaviour {
 		}
 		else if (other.gameObject.tag == "Target")
 			GameGUI.targetCount++;
-		if (other.gameObject.tag != "Bullet" && other.gameObject.tag != "Player") {			
+		if (other.gameObject.tag != "Bullet") {			
 			Instantiate(sparks, transform.position, transform.rotation);
 			Destroy(this.gameObject);
 		}
@@ -57,7 +52,7 @@ public class BulletHandler : MonoBehaviour {
 	void addVertex(GameObject go) {
 		Mesh mesh = go.GetComponent<MeshFilter>().mesh;
 		Vector3[] vertices = mesh.vertices;
-		GameGUI.DebugValue["vertices"] = vertices;
+		//GameGUI.DebugValue["vertices"] = vertices;
 		//Debug.Log(vertices);
 	}
 
