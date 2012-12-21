@@ -14,7 +14,7 @@ public class BulletHandler : MonoBehaviour {
 		rigidbody.AddRelativeForce(Vector3.forward*speed*100);
 		spawnTime = Time.time;
 		transform.Rotate(90,0,0);
-		Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("IgnoreBullet").collider, collider);
+		Physics.IgnoreCollision(GameObject.FindGameObjectWithTag("Player").collider, collider);
 	}
 	
 	void Update () {
@@ -26,6 +26,7 @@ public class BulletHandler : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision other) {
+		Debug.Log(other.gameObject.name);
 		if (other.gameObject.tag == "Wall") {
 			GameGUI.wallCount++;
 			//addVertex(other.gameObject);
@@ -40,6 +41,7 @@ public class BulletHandler : MonoBehaviour {
 	
 	
 	void OnCollisionStay(Collision other) {
+		Debug.Log(other.gameObject.name);
 		if (other.gameObject.tag == "Wall") {
 			GameGUI.wallCount++;
 			//addVertex(other.gameObject);

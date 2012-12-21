@@ -3,8 +3,6 @@ using System.Collections;
 
 public class DeathWall : MonoBehaviour {
 	
-	public PlayerHandler Player;
-	
 	// Use this for initialization
 	void Start () {
 	
@@ -12,19 +10,21 @@ public class DeathWall : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other)
 	{
-		if (other.gameObject == Player.PlayerMover.gameObject)
+		if (other.gameObject.tag == "Player")
 		{
-			Player.Hurt(0.075f);
-			Player.rigidbody.AddForce(-(Player.transform.eulerAngles) * 20);
+			PlayerHandler player = other.gameObject.GetComponent<PlayerHandler>();
+			player.Hurt(0.075f);
+			player.rigidbody.AddForce(-(player.transform.eulerAngles) * 20);
 		}
 	}
 	
 	void OnCollisionStay(Collision other)
 	{
-		if (other.gameObject == Player.PlayerMover.playerCam)
+		if (other.gameObject.tag == "Player")
 		{
-			Player.Hurt(0.075f);
-			Player.rigidbody.AddForce(-(Player.transform.eulerAngles) * 20);
+			PlayerHandler player = other.gameObject.GetComponent<PlayerHandler>();
+			player.Hurt(0.075f);
+			player.rigidbody.AddForce(-(player.transform.eulerAngles) * 20);
 		}
 	}
 	

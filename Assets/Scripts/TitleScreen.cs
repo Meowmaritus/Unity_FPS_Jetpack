@@ -35,9 +35,9 @@ public class TitleScreen : MonoBehaviour {
 					Application.LoadLevel("fps-testing");
 				}
 			
-				if(GUI.Button(new Rect(0,40,256,32), "Start Voxel Game (Outdated)"))
+				if(GUI.Button(new Rect(0,40,256,32), "Options (None Yet)"))
 				{
-					Application.LoadLevel("clickSpawn");
+					
 				}
 			
 				if(GUI.Button(new Rect(0,80,256,32), "Quit"))

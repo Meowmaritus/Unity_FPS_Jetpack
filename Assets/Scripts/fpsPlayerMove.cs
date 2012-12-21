@@ -121,9 +121,9 @@ public class fpsPlayerMove : MonoBehaviour {
 		}
 		
 		transform.Translate(speed*Time.deltaTime*t, Space.Self);
-		transform.Rotate(0,rotSpeed*Time.deltaTime*(MouseMove.x),0);
+		transform.Rotate(0,rotSpeed*Time.deltaTime*MouseMove.x,0);
 		//transform.Rotate(0, Input.GetAxis("Mouse X")*rotSpeed*Time.deltaTime, 0, Space.World);
-		playerCam.transform.Rotate(-(MouseMove.y)*rotSpeed*Time.deltaTime, 0, 0, Space.Self);
+		playerCam.transform.Rotate(-MouseMove.y*rotSpeed*Time.deltaTime, 0, 0, Space.Self);
 		
 		prevInput = currentInput;
 
