@@ -41,6 +41,9 @@ public class ExplosivePart : MonoBehaviour {
 			if ((transform.position-center).magnitude < dist*1.5) {
 				Destroy(gameObject);
 			}
+			if (Time.time - expTime > timeLim) {
+				Destroy(gameObject);
+			}
 			
 		}
 		
