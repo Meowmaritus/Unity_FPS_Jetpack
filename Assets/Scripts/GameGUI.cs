@@ -17,6 +17,8 @@ public class DebugValueSetter
 
 public class GameGUI : MonoBehaviour {
 	public PlayerHandler Player;
+
+    public Main main;
 	
 	public HealthBar BarHealth;
 	public float BarHealthLerp = 0.75f;
@@ -43,13 +45,6 @@ public class GameGUI : MonoBehaviour {
 	public static int wallCount;
 	public static int targetCount;
 	public static int bulletCount;
-	
-#if DEBUG_MODE
-	public static bool DebugMode = true;
-#else
-	public static bool DebugMode = false;
-	public static bool DebugBox = false;
-#endif
 
     public static Dictionary<string, object> DisplayValues = new Dictionary<string, object>();
 	public static Dictionary<string, object> DebugOnlyDisplayValues = new Dictionary<string, object>();
@@ -64,11 +59,19 @@ public class GameGUI : MonoBehaviour {
 	public static DebugValueSetter DebugValue = new DebugValueSetter();
 	
 	public GUIStyle DefaultHealthBarGUIStyle = new GUIStyle();
-    	
+	
 	void OnGUI()
-	{						
-		Screen.lockCursor = true;
-		Screen.showCursor = false;		
+	{
+		if (Main.Paused == false)
+		{
+			Screen.lockCursor = true;
+        	Screen.showCursor = false;
+		}
+		else if (Main.Paused == true)
+		{
+			Screen.lockCursor = false;
+        	Screen.showCursor = true;
+		}	
 	}
 	
 	void Start () {   
@@ -80,12 +83,43 @@ public class GameGUI : MonoBehaviour {
 		//Screen.lockCursor = true;
 		//Screen.showCursor = false;
 	}
+
+    void FixedUpdate()
+    {
+        if (Main.Paused == false)
+        {
+            DoFixedUpdate();
+        }
+        else if (Main.Paused == true)
+        {
+            DoFixedUpdate_Paused();
+        }
+    }
+
+    void Update()
+    {
+        if (Main.Paused == false)
+        {
+            DoUpdate();
+        }
+        else if (Main.Paused == true)
+        {
+            DoUpdate_Paused();
+        }
+    }
 	
-	void Update () {		
-		
+	void DoUpdate() 
+    {
+		DebugValue["Options_MotionBlur"] = main.Options_MotionBlur;
+		DebugValue["Options_Vignetting"] = main.Options_Vignetting;
+		DebugValue["Options_ChromaticAbberation"] = main.Options_ChromaticAbberation;
+		DebugValue["Options_Creasing"] = main.Options_Creasing;
+		DebugValue["Options_AmbientOcclusion"] = main.Options_AmbientOcclusion;
+		DebugValue["Options_PostProcessedAntiAliasing"] = main.Options_PostProcessedAntiAliasing;		        
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			Application.LoadLevel("Title Screen");	
+            main.Pause();
 		}	
 
 		displayText.material.color = DisplayTextColor;
@@ -108,17 +142,6 @@ public class GameGUI : MonoBehaviour {
 		BarStamina.TempValue = Mathf.Lerp(tempBarStaminaTempValue, oldBarStaminaTempValue, BarStaminaTempLerp);             
 		BarJetpackFuel.TempValue = Mathf.Lerp(tempBarJetpackFuelTempValue, oldBarJetpackFuelTempValue, BarJetpackFuelTempLerp);
 		
-		//Screen.showCursor = CSharpInterpreter.showOutputAsEditorSelection;
-		
-#if DEBUG_MODE
-		debugText.enabled = DebugMode;		
-#endif
-		
-		if (Input.GetKeyDown(KeyCode.BackQuote))
-		{
-			
-		}
-		
 		DisplayValues["NOTE"] = "Press H to hurt yourself!";
         DisplayValues["Wall Hit Count"] = wallCount;
         DisplayValues["Target Hit Count"] = targetCount;
@@ -137,6 +160,25 @@ public class GameGUI : MonoBehaviour {
 		oldBarStaminaTempValue = BarStamina.TempValue;
 		oldBarJetpackFuelTempValue = BarJetpackFuel.TempValue;
 	}
+
+    void DoUpdate_Paused()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            main.UnPause();
+        }
+
+    }
+
+    void DoFixedUpdate()
+    {
+
+    }
+
+    void DoFixedUpdate_Paused()
+    {
+
+    }
 
     void BuildDebugString()
     {

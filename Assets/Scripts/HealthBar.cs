@@ -2,7 +2,10 @@ using UnityEngine;
 using System.Collections;
 
 [AddComponentMenu("_Main/HUD/Health Bar")]
-public class HealthBar : MonoBehaviour {	
+public class HealthBar : MonoBehaviour 
+{
+	public bool Visible = true;
+	
 	public string Text = "[???]";
     public float Value; //current progress
 	public float TempValue; //current progress
@@ -50,7 +53,7 @@ public class HealthBar : MonoBehaviour {
 		_FullGUIStyle.normal.textColor = FullTextColor;
 	}
 
-    void OnGUI() {					
+    void OnGUI() {			
 		Value = Mathf.Clamp(Value, 0.0f, 1.0f);
 		TempValue = Mathf.Clamp(TempValue, 0.0f, 1.0f);
 		
@@ -64,18 +67,21 @@ public class HealthBar : MonoBehaviour {
 		_FullGUIStyle.normal.textColor = FullTextColor;
 		
        //draw the background:
-       GUI.BeginGroup(new Rect(Placement.x, Placement.y, Placement.width, Placement.height));
-       	 GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _EmptyGUIStyle);
-		
-         GUI.BeginGroup(new Rect(0,0, Placement.width * TempValue, Placement.height));
-          GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _TempGUIStyle);
-		 GUI.EndGroup();
-		
-		 GUI.BeginGroup(new Rect(0,0, Placement.width * Value, Placement.height));
-		  GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _FullGUIStyle);						
-		 GUI.EndGroup();		         
-		
-       GUI.EndGroup();
+		if (Visible == true)
+		{
+	       GUI.BeginGroup(new Rect(Placement.x, Placement.y, Placement.width, Placement.height));
+	       	 GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _EmptyGUIStyle);
+			
+	         GUI.BeginGroup(new Rect(0,0, Placement.width * TempValue, Placement.height));
+	          GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _TempGUIStyle);
+			 GUI.EndGroup();
+			
+			 GUI.BeginGroup(new Rect(0,0, Placement.width * Value, Placement.height));
+			  GUI.Box(new Rect(0,0, Placement.width, Placement.height),(Text + ": " + (Value * 100).ToString("0.00") + "%"), _FullGUIStyle);						
+			 GUI.EndGroup();		         
+			
+	       GUI.EndGroup();			
+		}
     }
 
     void FixedUpdate() {				

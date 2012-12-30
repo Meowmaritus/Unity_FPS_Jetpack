@@ -1,11 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Explosive.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\fpsPlayerMove.cs">
     <Files>
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="92" Column="75" />
       <File FileName="Assets\Scripts\Explosive.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BulletHandler.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\ExplosivePart.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ZoomScope.cs" Line="17" Column="3" />
+      <File FileName="Assets\Scripts\ZoomScope.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Main.cs" Line="41" Column="31" />
+      <File FileName="Assets\Scripts\GameGUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FXManager.cs" Line="6" Column="19" />
+      <File FileName="Assets\Scripts\HealthBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Crosshair.cs" Line="17" Column="19" />
+      <File FileName="Assets\Scripts\GUI\GUI_Slider.js" Line="9" Column="33" />
+      <File FileName="Assets\Scripts\GUI\GUI_Base.js" Line="12" Column="1" />
+      <File FileName="Assets\Scripts\GUI\GUI_Button.js" Line="2" Column="25" />
+      <File FileName="Assets\Scripts\GUI\GUI_Toggle.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GUI\GUI_TextField.js" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\fpsPlayerMove.cs" Line="210" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

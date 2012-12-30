@@ -66,8 +66,32 @@ public class PlayerHandler : MonoBehaviour {
 		Stamina = 1.0f;
 		CurrentWeapon = this.WeaponInventory.Weapons[0];			
 	}
+
+    void FixedUpdate()
+    {
+        if (Main.Paused == false)
+        {
+            DoFixedUpdate();
+        }
+        else if (Main.Paused == true)
+        {
+            DoFixedUpdate_Paused();
+        }
+    }
+
+    void Update()
+    {
+        if (Main.Paused == false)
+        {
+            DoUpdate();
+        }
+        else if (Main.Paused == true)
+        {
+            DoUpdate_Paused();
+        }
+    }
 	
-	void FixedUpdate()
+	void DoFixedUpdate()
 	{
 		
 		if (Time.time > nextHealthBarTempUpdate)
@@ -100,8 +124,13 @@ public class PlayerHandler : MonoBehaviour {
 		}
 		
 	}
+
+    void DoFixedUpdate_Paused()
+    {
+
+    }
 	
-	void Update()
+	void DoUpdate()
 	{
 		PlayerMover.playerCam.fov = currentFOVMod;
 		
@@ -286,7 +315,12 @@ public class PlayerHandler : MonoBehaviour {
 		oldStamina = Stamina;
 		oldJetpackFuel = JetpackFuel;
 		oldFOVMod = currentFOVMod;
-	}	
+	}
+
+    void DoUpdate_Paused()
+    {
+
+    }
 	
 	public void LoseJetpackFuel(float amount)
 	{
