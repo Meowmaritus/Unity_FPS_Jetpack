@@ -6,15 +6,16 @@ public class PauseMenu : MonoBehaviour {
 
     public Main main;
 
+    public GUISkin MAIN_GUISKIN;
+
+    public float ButtonBoxOffset = 0.0f;
+
     public GUIContent GUIContent_Resume = new GUIContent("Resume");
     public GUIContent GUIContent_Options = new GUIContent("Options");
     public GUIContent GUIContent_QuitToTitle = new GUIContent("Quit To Title");
     public GUIContent GUIContent_QuitToDesktop = new GUIContent("Quit To Desktop");
     public GUIContent GUIContent_Paused = new GUIContent("Paused");
-	
-	
-	
-	
+				
 	public GUIContent GUIContent_Options_MB = new GUIContent("Motion Blur:");
 	public GUIContent GUIContent_Options_Back = new GUIContent("Back");
 	public GUIContent GUIContent_Options_VG = new GUIContent("Vignetting:");
@@ -28,7 +29,7 @@ public class PauseMenu : MonoBehaviour {
 	private int GUIContent_Options_CR_SelectedIndex = 0;
 	private int GUIContent_Options_AO_SelectedIndex = 0;
 	private int GUIContent_Options_PPAA_SelectedIndex = 0;
-	private int GUIContent_DebugDisplay_SelectedIndex = 0;
+	private int GUIContent_DebugDisplay_SelectedIndex = 1;
 	
 	public GUIContent[] GUIContent_Options_MB_Choices = new GUIContent[] { new GUIContent("Off"),new GUIContent("Low"),new GUIContent("High") };
 	public GUIContent[] GUIContent_Options_VG_Choices = new GUIContent[] { new GUIContent("Off"),new GUIContent("Low"),new GUIContent("High") };
@@ -37,12 +38,8 @@ public class PauseMenu : MonoBehaviour {
 	public GUIContent[] GUIContent_Options_AO_Choices = new GUIContent[] { new GUIContent("Off"),new GUIContent("Low"),new GUIContent("High") };
 	public GUIContent[] GUIContent_Options_PPAA_Choices = new GUIContent[] { new GUIContent("Off"),new GUIContent("Low"),new GUIContent("High") };
 	public GUIContent[] GUIContent_DebugDisplay_Choices = new GUIContent[] { new GUIContent("Off"),new GUIContent("On") };
-	
-	public GUISkin guiSkin; 
 
     public bool OptionsMenu = false;
-
-    public static List<object> OptionValues = new List<object>();
 
     void fillWindow(int winID) 
     { 
@@ -57,7 +54,7 @@ public class PauseMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        GUIContent_DebugDisplay_SelectedIndex = 1;
 	}
 	
 	// Update is called once per frame
@@ -87,15 +84,39 @@ public class PauseMenu : MonoBehaviour {
 
     void OnGUI()
     {
+        GUI.skin = MAIN_GUISKIN;
+
         if (Main.Paused == true)
         {
 			GUI.Box(new Rect(-32, -32, Screen.width + 64, Screen.height + 64), "");
 			
             if (OptionsMenu == false)
             {
-                GUI.skin = guiSkin;								
-			
-				GUIContent_DebugDisplay_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 31, 390, 24), GUIContent_DebugDisplay_SelectedIndex, GUIContent_DebugDisplay_Choices);				
+                GUI.Label(new Rect(Screen.width / 2 + -150, Screen.height / 2 + -135, 300, 50), GUIContent_Paused);
+
+                if (Debug.isDebugBuild == true)
+                {                    
+                    GUI.Box(new Rect(Screen.width / 2 + -200, 10, 400, 50), "Debug Display:");
+
+                    GUIContent_DebugDisplay_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 31 + ButtonBoxOffset, 390, 24), GUIContent_DebugDisplay_SelectedIndex, GUIContent_DebugDisplay_Choices);
+
+                    if (GUI.changed)
+                    {
+
+                        switch (GUIContent_DebugDisplay_SelectedIndex)
+                        {
+                            case (0):
+                                main.ShowDebug = false;
+                                break;
+
+                            case (1):
+                                main.ShowDebug = true;
+                                break;
+                        }
+
+                    }
+
+                }
 
                 if (GUI.Button(new Rect(Screen.width / 2 + -128, Screen.height / 2 + -72, 256, 24), GUIContent_Resume))
                 {
@@ -115,27 +136,7 @@ public class PauseMenu : MonoBehaviour {
                 if (GUI.Button(new Rect(Screen.width / 2 + -128, Screen.height / 2 + 18, 256, 24), GUIContent_QuitToDesktop))
                 {
                     main.QuitToDesktop();
-                }
-				
-				GUI.Box(new Rect(Screen.width/2 + -200, 10, 400, 50), "Debug Display:");
-				
-				if (GUI.changed)
-				{
-					
-					switch (GUIContent_DebugDisplay_SelectedIndex)
-					{						
-						case (0):
-							main.ShowDebug = false;
-							break;
-						
-						case (1):
-							main.ShowDebug = true;
-							break;						
-					}
-					
-				}
-
-                GUI.Box(new Rect(Screen.width / 2 + -150, Screen.height / 2 + -135, 300, 50), GUIContent_Paused);
+                }								                
             }
             else
             {								
@@ -146,24 +147,24 @@ public class PauseMenu : MonoBehaviour {
 					
 				}
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 10, 400, 50), GUIContent_Options_MB);
+				GUI.Box(new Rect(Screen.width/2 + -200, 10, 400, 51), GUIContent_Options_MB);
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 70, 400, 50), GUIContent_Options_VG);
+				GUI.Box(new Rect(Screen.width/2 + -200, 70, 400, 51), GUIContent_Options_VG);
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 130, 400, 50), GUIContent_Options_CA);
+				GUI.Box(new Rect(Screen.width/2 + -200, 130, 400, 51), GUIContent_Options_CA);
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 190, 400, 50), GUIContent_Options_CR);
+				GUI.Box(new Rect(Screen.width/2 + -200, 190, 400, 51), GUIContent_Options_CR);
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 250, 400, 50), GUIContent_Options_AO);
+				GUI.Box(new Rect(Screen.width/2 + -200, 250, 400, 51), GUIContent_Options_AO);
 				
-				GUI.Box(new Rect(Screen.width/2 + -200, 310, 400, 50), GUIContent_Options_PPAA);
-				
-				GUIContent_Options_MB_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 31, 390, 24), GUIContent_Options_MB_SelectedIndex, GUIContent_Options_MB_Choices);				
-				GUIContent_Options_VG_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 91, 390, 24), GUIContent_Options_VG_SelectedIndex, GUIContent_Options_VG_Choices);				
-				GUIContent_Options_CA_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 151, 390, 24), GUIContent_Options_CA_SelectedIndex, GUIContent_Options_CA_Choices);
-				GUIContent_Options_CR_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 211, 390, 24), GUIContent_Options_CR_SelectedIndex, GUIContent_Options_CR_Choices);
-				GUIContent_Options_AO_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 271, 390, 24), GUIContent_Options_AO_SelectedIndex, GUIContent_Options_AO_Choices);
-				GUIContent_Options_PPAA_SelectedIndex = GUI.Toolbar(new Rect(Screen.width/2 + -195, 331, 390, 24), GUIContent_Options_PPAA_SelectedIndex, GUIContent_Options_PPAA_Choices);
+				GUI.Box(new Rect(Screen.width/2 + -200, 310, 400, 51), GUIContent_Options_PPAA);
+
+                GUIContent_Options_MB_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 31 + ButtonBoxOffset, 390, 24), GUIContent_Options_MB_SelectedIndex, GUIContent_Options_MB_Choices);
+                GUIContent_Options_VG_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 91 + ButtonBoxOffset, 390, 24), GUIContent_Options_VG_SelectedIndex, GUIContent_Options_VG_Choices);
+                GUIContent_Options_CA_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 151 + ButtonBoxOffset, 390, 24), GUIContent_Options_CA_SelectedIndex, GUIContent_Options_CA_Choices);
+                GUIContent_Options_CR_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 211 + ButtonBoxOffset, 390, 24), GUIContent_Options_CR_SelectedIndex, GUIContent_Options_CR_Choices);
+                GUIContent_Options_AO_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 271 + ButtonBoxOffset, 390, 24), GUIContent_Options_AO_SelectedIndex, GUIContent_Options_AO_Choices);
+                GUIContent_Options_PPAA_SelectedIndex = GUI.Toolbar(new Rect(Screen.width / 2 + -195, 331 + ButtonBoxOffset, 390, 24), GUIContent_Options_PPAA_SelectedIndex, GUIContent_Options_PPAA_Choices);
 				
 				if(GUI.changed)
 				{
@@ -277,7 +278,17 @@ public class PauseMenu : MonoBehaviour {
         }
 		else
 		{
-			GUI.Box(new Rect(Screen.width / 2 -200, Screen.height -48, 400, 24), "Press escape to open the pause menu and adjust the settings.");	
+            if (Debug.isDebugBuild == true)
+            {
+                if (Main.GodMode)
+                {
+                    GUI.Box(new Rect(Screen.width / 2 - 200, Screen.height - 48, 400, 24), "GOD MODE ACTIVE");
+                }
+                else
+                {
+                    GUI.Box(new Rect(Screen.width / 2 - 200, Screen.height - 48, 400, 24), "Press G to enable God Mode.");
+                }
+            }
 		}
     }
 

@@ -4,8 +4,6 @@ using System.Collections;
 
 [AddComponentMenu("_Main/Weapons/Bullet Handler")]
 public class BulletHandler : MonoBehaviour {
-	
-	public GameObject sparks;
 	public float speed;
 	public float bulletLife = 10;
 	private float spawnTime;
@@ -36,15 +34,17 @@ public class BulletHandler : MonoBehaviour {
 	}
 	
 	void HandleCollision(Collision other) {
-		Debug.Log(other.gameObject.name);
+		//Debug.Log(other.gameObject.name);
 		if (other.gameObject.tag == "Wall") {
 			GameGUI.wallCount++;
 			//addVertex(other.gameObject);
 		}
-		else if (other.gameObject.tag == "Target")
-			GameGUI.targetCount++;
-		if (other.gameObject.tag != "Bullet") {			
-			Instantiate(sparks, transform.position, transform.rotation);
+        else if (other.gameObject.tag == "Target")
+        {
+            GameGUI.targetCount++;
+        }
+
+		if (other.gameObject.tag != "Bullet" && other.gameObject.tag != "WEAPONS") {						
 			Destroy(this.gameObject);
 		}
 	}

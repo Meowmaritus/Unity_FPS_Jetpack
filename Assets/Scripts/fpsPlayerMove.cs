@@ -7,7 +7,11 @@ public class fpsPlayerMove : MonoBehaviour {
 	public float speed;
 	public float jetpackForce;
 	public float rotSpeed;
-	public float maxYangle;	
+	public float maxYangle;
+	
+	public float MinPitch = -180f;
+	public float MaxPitch = 180f;
+	
 	public Camera playerCam;
 	public ParticleSystem jetpackParticles;
 	public bool Sprinting;
@@ -171,8 +175,20 @@ public class fpsPlayerMove : MonoBehaviour {
         float yRot = -MouseMove.y * rotSpeed;
         transform.Rotate(0, rotSpeed * MouseMove.x, 0);
         playerCam.transform.Rotate(yRot, 0, 0, Space.Self);
-        if (!cameraWithinAngle())
-            playerCam.transform.Rotate(-yRot, 0, 0, Space.Self);
+
+        GameGUI.DebugValue["playerCam.transform.localEulerAngles.x"] = playerCam.transform.localEulerAngles.x;
+        GameGUI.DebugValue["playerCam.transform.eulerAngles.x"] = playerCam.transform.eulerAngles.x;
+
+        float anglex = playerCam.transform.localEulerAngles.x;
+        float angley = playerCam.transform.localEulerAngles.y;
+        float anglez = playerCam.transform.localEulerAngles.z;
+
+        //anglex = ClampEulerAngle(anglex, MinPitch, MaxPitch);
+
+        GameGUI.DebugValue["playerCam pitch limiter - clamped pitch"] = anglex;
+
+        playerCam.transform.localEulerAngles = new Vector3(anglex, angley, anglez);
+		
 
         //float yRot = -MouseMove.y * rotSpeed * Time.deltaTime;
         //transform.Rotate(0, rotSpeed * Time.deltaTime * MouseMove.x, 0);
@@ -183,37 +199,89 @@ public class fpsPlayerMove : MonoBehaviour {
         oldMouseMove = MouseMove;
     }
 
+    float ClampEulerAngle(float angle, float min, float max)
+    {
+        float temp1low = Main.MapRangeClamp(angle, 0, 180, 0, -180);
+        float temp1high = Main.MapRangeClamp(angle, 180, 360, 180, 0);
+
+        float mapped1 = (temp1low + temp1high);
+
+        float clamped = Mathf.Clamp(mapped1, min, max);
+
+        float temp2low = Main.MapRangeClamp(clamped, 0, 180, 360, 180);
+        float temp2high = Main.MapRangeClamp(clamped, -180, 0, 180, 0);
+
+        return (temp2low + temp2high);     
+    }
+
     void DoUpdate_Paused()
     {
 
     }
 	
-	bool cameraWithinAngle() {
-		float y = ((playerCam.transform.localRotation.eulerAngles.x + 90) % 360);
-		return (y > maxYangle && y < 180-maxYangle);
-	}
-	
 	
 	void OnCollisionStay(Collision other) {
-			if (other.gameObject.tag == "Water")
-			{
-				IsUnderwater = true;
-			}
-			else
-			{				
-				onGround = true;
-			}
+					
+		onGround = true;
+
 	}
 	
 	void OnCollisionExit(Collision other)
+	{							
+		onGround = false;	
+	}
+
+    void OnTriggerStay(Collider other)
+    {		
+		if (other.gameObject.tag == "Water")
+		{
+			IsUnderwater = true;
+		}
+	}
+	
+	void OnTriggerEnter(Collider other) {
+		
+		if (other.gameObject.tag == "Water")
+		{
+			IsUnderwater = true;
+		}
+	}
+
+    void OnTriggerExit(Collider other)
 	{				
 		if (other.gameObject.tag == "Water")
-			{
-				IsUnderwater = false;
-			}
-			else
-			{				
-				onGround = false;
-			}		
+		{
+			IsUnderwater = false;
+		}	
 	}
+
+    public Quaternion AimDirectionFromTransform(Transform sourceTransform)
+    {
+        Ray centerRay = playerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        RaycastHit center;
+
+        Physics.Raycast(centerRay, out center);
+
+        Vector3 rayrotation = (center.point - sourceTransform.position).normalized;
+
+
+        if (Debug.isDebugBuild)
+        {
+            Debug.DrawRay(sourceTransform.position, (center.point - sourceTransform.position), Main.RandomColor(0.5f, 1.0f), 5f, true);
+        }
+
+
+        return (Quaternion.Euler(rayrotation));
+    }
+
+    public Vector3 AimDestination()
+    {
+        Ray centerRay = playerCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        RaycastHit center;
+
+        Physics.Raycast(centerRay, out center);
+
+        return (center.point);
+    }
 }

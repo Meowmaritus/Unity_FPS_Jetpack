@@ -46,7 +46,7 @@ public class GameGUI : MonoBehaviour {
 	public static int targetCount;
 	public static int bulletCount;
 
-    public static Dictionary<string, object> DisplayValues = new Dictionary<string, object>();
+    public static Dictionary<string, object> DisplayValue = new Dictionary<string, object>();
 	public static Dictionary<string, object> DebugOnlyDisplayValues = new Dictionary<string, object>();
 
 	public GUIText displayText;
@@ -142,10 +142,8 @@ public class GameGUI : MonoBehaviour {
 		BarStamina.TempValue = Mathf.Lerp(tempBarStaminaTempValue, oldBarStaminaTempValue, BarStaminaTempLerp);             
 		BarJetpackFuel.TempValue = Mathf.Lerp(tempBarJetpackFuelTempValue, oldBarJetpackFuelTempValue, BarJetpackFuelTempLerp);
 		
-		DisplayValues["NOTE"] = "Press H to hurt yourself!";
-        DisplayValues["Wall Hit Count"] = wallCount;
-        DisplayValues["Target Hit Count"] = targetCount;
-        DisplayValues["Bullets"] = bulletCount;		
+        DisplayValue["Wall Hit Count"] = wallCount;
+        DisplayValue["Target Hit Count"] = targetCount;
 		
         BuildDebugString();
 
@@ -185,7 +183,7 @@ public class GameGUI : MonoBehaviour {
         builder.Remove(0, builder.Length);
 		debugBuilder.Remove(0, debugBuilder.Length);
 
-        foreach (KeyValuePair<string, object> kv in DisplayValues)
+        foreach (KeyValuePair<string, object> kv in DisplayValue)
         {
         	builder.AppendLine(kv.Key + ": " + kv.Value.ToString());
         }

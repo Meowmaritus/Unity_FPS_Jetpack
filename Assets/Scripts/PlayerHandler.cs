@@ -131,7 +131,28 @@ public class PlayerHandler : MonoBehaviour {
     }
 	
 	void DoUpdate()
-	{
+	{        
+        if (Debug.isDebugBuild == true && Input.GetKeyDown(KeyCode.G))
+        {
+            Main.ToggleGodMode();
+        }
+
+        if (Main.GodMode)
+        {
+            for (int i = 0; i < WeaponInventory.Weapons.Length; i++)
+            {
+                WeaponInventory.Weapons[i].MaxAmmoTotal = 999999999;
+                WeaponInventory.Weapons[i].MaxAmmoPerClip = 999999999;
+
+                WeaponInventory.Weapons[i].AmmoTotal = 999999999;
+                WeaponInventory.Weapons[i].AmmoInClip = 999999999;
+            }
+
+            Health = 1.0f;
+            Stamina = 1.0f;
+            JetpackFuel = 1.0f;
+        }
+
 		PlayerMover.playerCam.fov = currentFOVMod;
 		
 		HealthDelta = (Health - oldHealth);

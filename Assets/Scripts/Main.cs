@@ -27,9 +27,10 @@ public class Main : MonoBehaviour {
 	public Option Options_AmbientOcclusion = Option.Off;
 	public Option Options_PostProcessedAntiAliasing = Option.Off;
 	
-	public bool ShowDebug = false;
+	public bool ShowDebug = true;
 
     public static bool Paused = false;
+    public static bool GodMode = false;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +39,7 @@ public class Main : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		GUI_DebugText.enabled = ShowDebug;
+		GUI_DebugText.enabled = (Debug.isDebugBuild && ShowDebug);
 		
 		if (Paused == false)
 		{
@@ -83,7 +84,9 @@ public class Main : MonoBehaviour {
 
     void DoUpdate()
     {
-        Time.timeScale = 1.0f;				
+        Time.timeScale = 1.0f;
+
+        GodMode = (GodMode && Debug.isDebugBuild);
     }
 
     void DoUpdate_Paused()
@@ -124,4 +127,40 @@ public class Main : MonoBehaviour {
         Paused = false;
         pauseMenu.OptionsMenu = false;
     }
+
+
+    public static Color RandomColor(float minValue, float maxValue)
+    {
+        Color result = Color.white;
+        minValue = Mathf.Clamp(minValue, 0, 1);
+        maxValue = Mathf.Clamp(maxValue, 0, 1);
+
+        float r = Random.Range(minValue, maxValue);
+        float g = Random.Range(minValue, maxValue);
+        float b = Random.Range(minValue, maxValue);
+
+        result = new Color(r, g, b, 1.0f);
+
+        return (result);
+    }
+
+    public static void ToggleGodMode()
+    {
+        GodMode = !GodMode;
+    }
+
+    public static float MapRange(float s, float a1, float a2, float b1, float b2)
+    {
+
+        return ( b1 + (s - a1) * (b2 - b1) / (a2 - a1) );
+
+    }
+
+    public static float MapRangeClamp(float s, float a1, float a2, float b1, float b2)
+    {
+        float result = ( b1 + (s - a1) * (b2 - b1) / (a2 - a1) );
+        return ( Mathf.Clamp(result, b1, b2) );
+
+    }
+
 }

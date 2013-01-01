@@ -48,6 +48,8 @@ public class Weapon : MonoBehaviour
 	public int BurstAmount = 5;
 	
 	public GameObject GunLight;
+
+    public GameObject[] TargetDustObjects;
 	
 	public int AmmoTotal = 0;	
 	public int AmmoInClip = 0;
@@ -172,15 +174,19 @@ public class Weapon : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{	
-		GameGUI.DisplayValues["Switch"] = CurrentGunState;
-		GameGUI.DisplayValues["Forced Safety"] = SafetyEngaged;
+		GameGUI.DisplayValue["Switch"] = CurrentGunState;
+		GameGUI.DisplayValue["Forced Safety"] = SafetyEngaged;
 		
 		//GameGUI.DebugValue["CurrentWeapon.MuzzleFlareVisible"] = MuzzleFlareVisible;
 		GameGUI.DebugValue["CurrentWeapon.MuzzleFlashObject.renderer.enabled"] = MuzzleFlashObject.renderer.enabled;
 		GameGUI.DebugValue["CurrentWeapon.CurrentGunState"] = CurrentGunState;
 		GameGUI.DebugValue["CurrentWeapon.CurrentBurst"] = CurrentBurst;
 		
-		GunLight.SetActive(MuzzleFlareVisible);	
+		GunLight.SetActive(MuzzleFlareVisible);
+
+        GameGUI.DisplayValue["# Total Rounds"] = AmmoTotal;
+        GameGUI.DisplayValue["# Rounds In Clip"] = AmmoInClip;
+        GameGUI.DisplayValue["# Rounds In Chamber"] = AmmoInBarrel;
 		
 		GameGUI.DebugValue["AmmoTotal"] = AmmoTotal;
 		GameGUI.DebugValue["AmmoInClip"] = AmmoInClip;
@@ -351,9 +357,17 @@ public class Weapon : MonoBehaviour
 			Player._AudioSource.PlayOneShot(GunshotSounds[ra]);				
 			
 			int rb = Random.Range(0, BulletObjects.Length);
-			
-			Instantiate(BulletObjects[rb], TipOfBarrel.transform.position, (TipOfBarrel.transform.rotation * BulletObjects[rb].transform.rotation));
-			
+
+            Quaternion aimRotation = Player.PlayerMover.AimDirectionFromTransform(TipOfBarrel.transform);
+            Vector3 hitpos = Player.PlayerMover.AimDestination();
+
+            //Instantiate(BulletObjects[rb], TipOfBarrel.transform.position, ((TipOfBarrel.transform.rotation * r) * BulletObjects[rb].transform.rotation));
+            //Instantiate(BulletObjects[rb], TipOfBarrel.transform.position, (r * BulletObjects[rb].transform.rotation));
+            Instantiate(BulletObjects[rb], TipOfBarrel.transform.position, (TipOfBarrel.transform.rotation * aimRotation) * BulletObjects[rb].transform.rotation);
+            int rtd = Random.Range(0, TargetDustObjects.Length);
+
+            Instantiate(TargetDustObjects[rtd], hitpos, TargetDustObjects[rtd].transform.rotation);
+
 			AmmoInBarrel--;	
 			
 		}
