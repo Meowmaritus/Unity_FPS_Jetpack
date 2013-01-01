@@ -8,6 +8,8 @@ public class fpsPlayerMove : MonoBehaviour {
 	public float jetpackForce;
 	public float rotSpeed;
 	public float maxYangle;
+	public float terminalVelocity = 45f;
+	public float terminalVelocityY = 40f;
 	
 	public float MinPitch = -180f;
 	public float MaxPitch = 180f;
@@ -40,6 +42,9 @@ public class fpsPlayerMove : MonoBehaviour {
 	
 	public bool Jetpack = false;
 	public bool CanUseJetpack = true;
+	
+	public GameObject gravPlanet;
+	public float gravityConstant = 9.81f;
 	
 	void Start () {
 		
@@ -102,7 +107,49 @@ public class fpsPlayerMove : MonoBehaviour {
             Jetpack = false;
             jetpackParticles.Stop();
         }
-
+		
+		
+		// attempt 1
+		if (!onGround && !Jetpack) {
+			rigidbody.drag = 0.05f;
+			Vector3 v = rigidbody.velocity;
+			v = v.normalized * Mathf.Clamp(v.magnitude, -terminalVelocity, terminalVelocity);
+			rigidbody.velocity = v;
+		}
+		else {
+			rigidbody.drag = 1f;
+		}
+		
+		//attempt 2
+		/*if (rigidbody.velocity.y < -0.1f) {
+			rigidbody.drag = 0f;
+			Vector3 v = rigidbody.velocity;
+			rigidbody.velocity = new Vector3(v.x, Mathf.Clamp(v.y, -terminalVelocityY, 0), v.z);
+		}
+		else {
+			rigidbody.drag = 1f;
+		}*/
+		
+		
+		//Debug.Log(rigidbody.velocity);
+		
+		/*rigidbody.AddForce(rigidbody.mass*Physics.gravity);
+		if (!onGround) {
+			float idealDrag = 1 / terminalVelocity;
+			rigidbody.drag = idealDrag / (idealDrag * Time.fixedDeltaTime + 1);
+		}
+		else {
+			rigidbody.drag = 1f;
+		}*/
+		
+		if (gravPlanet.GetComponent<GravityCenter>().gravityOn) {
+			rigidbody.useGravity = false;
+			Vector3 toCenter = transform.position - gravPlanet.transform.position;
+			rigidbody.AddForce(-toCenter.normalized * gravityConstant);
+			Quaternion lookAt = Quaternion.LookRotation(toCenter);
+			transform.rotation = Quaternion.Lerp(transform.rotation, lookAt, Time.smoothDeltaTime);
+		}
+		
     }
 
     void DoFixedUpdate_Paused()
