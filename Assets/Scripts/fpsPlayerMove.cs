@@ -20,7 +20,7 @@ public class fpsPlayerMove : MonoBehaviour {
 	public bool onGround;
 	public float MovementInputSmooth; // 1.0f - no movement cuz its so smoothed, 0.0f = full movement; no smooth...//
     public float BoostSpeedSmooth;    //<---Same here//
-    public float BoostMult = 2.0f;
+    public float BoostMult = 20.0f;
 	
 	public bool IsUnderwater = false;
 	
@@ -43,7 +43,6 @@ public class fpsPlayerMove : MonoBehaviour {
 	public bool Jetpack = false;
 	public bool CanUseJetpack = true;
 	
-	public GameObject gravPlanet;
 	public float gravityConstant = 9.81f;
 	
 	void Start () {
@@ -142,15 +141,22 @@ public class fpsPlayerMove : MonoBehaviour {
 			rigidbody.drag = 1f;
 		}*/
 		
-		if (gravPlanet.GetComponent<GravityCenter>().gravityOn) {
-			rigidbody.useGravity = false;
-			Vector3 toCenter = transform.position - gravPlanet.transform.position;
-			rigidbody.AddForce(-toCenter.normalized * gravityConstant);
-			Quaternion lookAt = Quaternion.LookRotation(toCenter);
-			transform.rotation = Quaternion.Lerp(transform.rotation, lookAt, Time.smoothDeltaTime);
-		}
-		
+		GravityUpdate();
     }
+	
+	void GravityUpdate() {
+		
+		if (GravityObject.globalGravityOn) {
+			rigidbody.useGravity = false;
+			
+			Vector3 toCenter = GravityObject.mainObject.GetGravityFor(transform.position);
+			rigidbody.AddForce(-toCenter.normalized * GravityObject.mainObject.gravityForce * gravityConstant);
+			
+			Quaternion lookAt = Quaternion.LookRotation(transform.forward, toCenter);
+			transform.rotation = Quaternion.Lerp(transform.rotation, lookAt, Time.smoothDeltaTime);
+			//transform.rotation = lookAt;
+		}
+	}
 
     void DoFixedUpdate_Paused()
     {
